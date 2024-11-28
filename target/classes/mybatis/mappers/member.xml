@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+	<resultMap id="memResult" type="memberVO">
+		<result property="userId" column="userId" />
+        <result property="userPw" column="userPw" />
+        <result property="userNm" column="userNm" />
+        <result property="email" column="email" />
+        <result property="userType" column="userType" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap> 
+	
+
+	<select id="selectAllMemberList" resultMap="memResult">
+      <![CDATA[
+         select * from member	order by joinDate desc	 	
+      ]]>
+	</select>
+	
+	<!-- <select id="selectAllMemberList" resultMap="memResult">
+    <![CDATA[
+        select userId, userPw, userNm, email, 
+               case when userType = 1 then '학생' 
+                    when userType = 2 then '강사' 
+                    else '기타' end as userType,
+               joinDate
+        from member 
+        order by joinDate desc
+    ]]>
+</select> -->
+	
+    
+  <insert id="insertMember"  parameterType="memberVO" useGeneratedKeys="true" keyProperty="userNo">
+		<![CDATA[
+		 insert into member(userId,userPw, userNm , email, userType, joinDate)
+		 values(#{userId}, #{userPw}, #{userNm}, #{email} ,#{userType}, SYSDATE)
+		]]>      
+		
+	</insert>
+	
+   
+  <!--  <update id="updateMember"  parameterType="memberVO">
+     <![CDATA[
+	     update member
+	     set pwd=#{pwd}, name=#{name}, email=#{email}
+	     where
+	     id=#{id}
+      ]]>      
+   </update> 
+      -->
+   <!-- <delete id="deleteMember"  parameterType="String">
+	<![CDATA[
+	   delete from  member
+	   where
+	   id=#{id}
+	]]>      
+  </delete> -->
+  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+	<![CDATA[
+		select * from member	
+		where userId=#{userId} and userPw=#{userPw}		
+	]]>
+  </select>
+</mapper>
