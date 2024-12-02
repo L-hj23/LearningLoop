@@ -1,10 +1,16 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
 	<typeAliases>
-	<typeAlias alias="ReviewVO" type="com.mySpring.myapp.vo.ReviewVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.MemberVO"  alias="memberVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.LectureVO"  alias="lectureVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.ArticleVO"  alias="articleVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.ImageVO"  alias="imageVO" />
+    
+    	<typeAlias alias="ReviewVO" type="com.mySpring.myapp.vo.ReviewVO" />
 		<typeAlias alias="LectureVO" type="com.mySpring.myapp.vo.LectureVO" />
 	</typeAliases>
 </configuration>

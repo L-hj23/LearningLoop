@@ -1,8 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"   isELIgnored="false"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+request.setCharacterEncoding("UTF-8");
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        $(document).ready(function() {
+            $('#btnBuy').click(function() {
+                <%--${sessionScope.member}--%>
+                window.location.href = '/lecturePurchase.do?lectureKey=${lectureDetail.lectureKey}'; // 이동할 페이지 URL
+            });
+        });
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -84,7 +106,7 @@
                     <div class="card-body text-center">
                         <p class="fs-5">70,000원</p>
                         <button id="btnBuy" class="btn btn-outline-primary" type="button"><i class="bi bi-credit-card"></i> 구매하기</button>
-                        <button id="btnCart" class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#addToCartModalForm"><i class="bi bi-cart-plus"></i> 장바구니</button>
+                        <button id="btnCart" class="btn btn-outline-success" type="button" data-bs-toggle="modal" data-bs-target="#addToCartModalForm" hidden="hidden"><i class="bi bi-cart-plus"></i> 장바구니</button>
                     </div>  
                 </div> 
                 <div style="height: 725px;">

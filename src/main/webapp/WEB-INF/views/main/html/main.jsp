@@ -1,10 +1,78 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"   isELIgnored="false"  %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
+<%
+request.setCharacterEncoding("UTF-8");
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<%--    <script src="../js/main.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#btnReview').on('click', function(event) {
+                event.preventDefault();
+                alert('평가하기');
+            });
+
+            $('#btnChangeProfileImage').on('click', function() {
+                $('#changeProfileImageForm').removeClass('d-none');
+            });
+
+            $('#btnCancleEdit').on('click', function() {
+                $('#changeProfileImageForm').addClass('d-none');
+            });
+
+            $('#btnUpload').on('click', function() {
+                $('#inputFile').click();
+            });
+
+
+            // $('#scrollLeft').on('click', function() {
+            //     $('#cardContainer').scrollLeft($('#cardContainer').scrollLeft() - 300);
+            // });
+            // $('#scrollRight').on('click', function() {
+            //     $('#cardContainer').scrollLeft($('#cardContainer').scrollLeft() + 300);
+            // });
+
+            const scrollAmount = 300; // 한 번에 스크롤되는 픽셀 수
+
+            // 왼쪽으로 스크롤
+            $('#scrollLeft').click(function () {
+                const container = $('#cardContainer');
+                container.animate({ scrollLeft: container.scrollLeft() - scrollAmount }, 300);
+            });
+
+            // 오른쪽으로 스크롤
+            $('#scrollRight').click(function () {
+                const container = $('#cardContainer');
+                container.animate({ scrollLeft: container.scrollLeft() + scrollAmount }, 300);
+            });
+
+            $('#scrollLeft2').click(function () {
+                const container = $('#cardContainer');
+                container.animate({ scrollLeft: container.scrollLeft() - scrollAmount }, 300);
+            });
+
+            // 오른쪽으로 스크롤
+            $('#scrollRight2').click(function () {
+                const container = $('#cardContainer2');
+                container.animate({ scrollLeft: container.scrollLeft() + scrollAmount }, 300);
+            });
+        });
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <title>teamPJ</title>
@@ -16,7 +84,7 @@
         ul, li {
             list-style: none;
         }
-        
+
         a {
             color: black;
             text-decoration: none;
@@ -41,6 +109,26 @@
         #btnChangeProfileImage:hover, #btnUpload:hover {
             background-color: black;
         }
+
+
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .card-title {
+            height: 50px;
+        }
+        .lectureWriter {
+            font-size: 13px;
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            gap: 1rem;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -48,6 +136,9 @@
     <header class="bg-light text-center py-5">
         <h1>학습 강의 관리</h1>
     </header>
+
+
+
 
     <nav class="navbar bg-body-secondary sticky-top ps-3 pe-3">
         <div class="container-fluid">
@@ -327,135 +418,83 @@
     </form>
 
     <main class="container my-4">
+<%--        <section id="part1" class="container mt-5">--%>
+<%--            <p class="mini_title fw-bold mb-3 fs-4">지금 인기있는 강의</p>--%>
+
+<%--            <div class="d-flex justify-content-between align-items-center">--%>
+<%--                <span id="scrollLeft" class="btn btn-outline-dark rounded-circle">◀</span>--%>
+
+<%--                <div class="row w-100 overflow-hidden" id="cardContainer">--%>
+
+<%--                    <div class="col-md-3 mb-4">--%>
+<%--                        <a href="#" class="text-decoration-none text-dark">--%>
+<%--                            <div class="card">--%>
+<%--                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>--%>
+<%--                                <div class="card-body">--%>
+<%--                                    <p class="subject text-muted">코딩/프론트앤드</p>--%>
+<%--                                    <h5 class="title">React의 A부터 Z까지 파헤치기(1)</h5>--%>
+<%--                                    <p class="name">홍길동</p>--%>
+<%--                                    <p class="rating text-warning">★★★★★</p>--%>
+<%--                                    <p>가격 : <span class="price">70,000</span></p>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </a>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+
+<%--                <span id="scrollRight" class="btn btn-outline-dark rounded-circle">▶</span>--%>
+<%--            </div>--%>
+<%--        </section>--%>
         <section id="part1" class="container mt-5">
             <p class="mini_title fw-bold mb-3 fs-4">지금 인기있는 강의</p>
             <div class="d-flex justify-content-between align-items-center">
-                <span class="btn btn-outline-dark rounded-circle">◀</span>
-                <div class="row w-100">
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(1)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
+                <span id="scrollLeft" class="btn btn-outline-dark rounded-circle">◀</span>
+                <div class="scroll-container w-100" id="cardContainer">
+                    <c:forEach var="lecture" items="${lectureList}">
+                        <div class="col-md-3 mb-4">
+                            <a href="/lectureDetail.do?lectureKey=${lecture.lectureKey}&lectureWriterKey=${lecture.lectureWriterKey}" class="text-decoration-none text-dark">
+                                <div class="card">
+                                    <div class="img card-img-top bg-light" style="height: 250px; background-size: cover; background-image: url('${lecture.lectureImageUrl}');"></div>
+                                    <div class="card-body">
+                                        <p class="subject text-muted">${lecture.lectureCategory}</p>
+                                        <h5 class="title">${lecture.lectureTitle}</h5>
+                                        <p class="name">${lecture.lectureWriterName}</p>
+                                        <p class="rating text-warning">*****</p>
+                                        <p>가격 : <span class="price">${lecture.lecturePrice}</span></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(2)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(3)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(4)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    </c:forEach>
                 </div>
-                <span class="btn btn-outline-dark rounded-circle">▶</span>
+                <span id="scrollRight" class="btn btn-outline-dark rounded-circle">▶</span>
             </div>
         </section>
+
 
         <section id="part2" class="container mt-5">
             <p class="mini_title fw-bold mb-3 fs-4">새로 올라온 강의</p>
             <div class="d-flex justify-content-between align-items-center">
-                <span class="btn btn-outline-dark rounded-circle">◀</span>
-                <div class="row w-100">
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(1)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
+                <span id="scrollLeft2" class="btn btn-outline-dark rounded-circle">◀</span>
+                <div class="scroll-container w-100" id="cardContainer2">
+                    <c:forEach var="lecture" items="${lectureList}">
+                        <div class="col-md-3 mb-4">
+                            <a href="#" class="text-decoration-none text-dark">
+                                <div class="card">
+                                    <div class="img card-img-top bg-light" style="height: 250px; background-size: cover; background-image: url('${lecture.lectureImageUrl}');"></div>
+                                    <div class="card-body">
+                                        <p class="subject text-muted">${lecture.lectureCategory}</p>
+                                        <h5 class="title">${lecture.lectureTitle}</h5>
+                                        <p class="name">${lecture.lectureWriterName}</p>
+                                        <p class="rating text-warning">*****</p>
+                                        <p>가격 : <span class="price">${lecture.lecturePrice}</span></p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(2)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(3)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mb-4">
-                        <a href="#" class="text-decoration-none text-dark">
-                            <div class="card">
-                                <div class="img card-img-top bg-light" style="height: 250px; background-size: cover;"></div>
-                                <div class="card-body">
-                                    <p class="subject text-muted">코딩/프론트앤드</p>
-                                    <h5 class="title">React의 A부터 Z까지 파헤치기(4)</h5>
-                                    <p class="name">홍길동</p>
-                                    <p class="rating text-warning">★★★★★</p>
-                                    <p>가격 : <span class="price">70,000</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    </c:forEach>
                 </div>
-                <span class="btn btn-outline-dark rounded-circle">▶</span>
+                <span id="scrollRight2" class="btn btn-outline-dark rounded-circle">▶</span>
             </div>
         </section>
 
@@ -492,5 +531,5 @@
         <p>team project</p>
     </footer>
 
-    <script src="../../main/js/main.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>

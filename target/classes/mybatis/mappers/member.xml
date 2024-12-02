@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.member">
 	<resultMap id="memResult" type="memberVO">
 		<result property="userId" column="userId" />
-        <result property="userPw" column="userPw" />
-        <result property="userNm" column="userNm" />
-        <result property="email" column="email" />
-        <result property="userType" column="userType" />
-        <result property="joinDate" column="joinDate" />
-	</resultMap> 
-	
+		<result property="userPw" column="userPw" />
+		<result property="userNm" column="userNm" />
+		<result property="email" column="email" />
+		<result property="userType" column="userType" />
+		<result property="joinDate" column="joinDate" />
+	</resultMap>
+
+	<resultMap id="lecResult" type="lectureVO">
+		<result property="lectureKey" column="LECTURE_KEY" />
+		<result property="lectureWriterKey" column="LECTURE_WRITER_KEY" />
+		<result property="lectureWriterName" column="USERNM" />
+		<result property="lecturePrice" column="LECTURE_PRICE" />
+		<result property="lectureRating" column="LECTURE_RATING" />
+		<result property="lectureCategory" column="LECTURE_CATEGORY" />
+		<result property="lectureTitle" column="LECTURE_TITLE" />
+		<result property="lectureSubTitle" column="LECTURE_SUB_TITLE" />
+		<result property="lectureContent" column="LECTURE_CONTENT" />
+		<result property="lectureImageUrl" column="LECTURE_IMAGE_URL" />
+		<result property="lectureRegDt" column="LECTURE_REG_DT" />
+	</resultMap>
+
 
 	<select id="selectAllMemberList" resultMap="memResult">
       <![CDATA[
-         select * from member	order by joinDate desc	 	
-      ]]>
+		select * from member order by joinDate desc
+		]]>
 	</select>
-	
+
 	<!-- <select id="selectAllMemberList" resultMap="memResult">
     <![CDATA[
         select userId, userPw, userNm, email, 
@@ -31,37 +45,67 @@
         order by joinDate desc
     ]]>
 </select> -->
-	
-    
-  <insert id="insertMember"  parameterType="memberVO" useGeneratedKeys="true" keyProperty="userNo">
+
+
+	<insert id="insertMember"  parameterType="memberVO" useGeneratedKeys="true" keyProperty="userNo">
 		<![CDATA[
-		 insert into member(userId,userPw, userNm , email, userType, joinDate)
-		 values(#{userId}, #{userPw}, #{userNm}, #{email} ,#{userType}, SYSDATE)
+		insert into member(userId,userPw, userNm , email, userType, joinDate)
+		values(#{userId}, #{userPw}, #{userNm}, #{email} ,#{userType}, SYSDATE)
 		]]>      
 		
 	</insert>
-	
-   
-  <!--  <update id="updateMember"  parameterType="memberVO">
+
+
+	<!--  <update id="updateMember"  parameterType="memberVO">
+       <![CDATA[
+           update member
+           set pwd=#{pwd}, name=#{name}, email=#{email}
+           where
+           id=#{id}
+        ]]>
+     </update>
+        -->
+	<!-- <delete id="deleteMember"  parameterType="String">
      <![CDATA[
-	     update member
-	     set pwd=#{pwd}, name=#{name}, email=#{email}
-	     where
-	     id=#{id}
-      ]]>      
-   </update> 
-      -->
-   <!-- <delete id="deleteMember"  parameterType="String">
-	<![CDATA[
-	   delete from  member
-	   where
-	   id=#{id}
-	]]>      
-  </delete> -->
-  <select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
-	<![CDATA[
-		select * from member	
-		where userId=#{userId} and userPw=#{userPw}		
-	]]>
-  </select>
+        delete from  member
+        where
+        id=#{id}
+     ]]>
+   </delete> -->
+	<select id="loginById"  resultType="memberVO"   parameterType="memberVO" >
+		<![CDATA[
+		select * from member
+		where userId=#{userId} and userPw=#{userPw}
+		]]>
+  	</select>
+
+
+	<select id="selectAllLectureList" resultMap="lecResult">
+		SELECT
+			L.LECTURE_KEY, L.LECTURE_WRITER_KEY, L.LECTURE_PRICE, L.LECTURE_RATING,
+			L.LECTURE_CATEGORY, L.LECTURE_TITLE, L.LECTURE_SUB_TITLE,
+			L.LECTURE_CONTENT, L.LECTURE_IMAGE_URL, L.LECTURE_REG_DT,
+			M.USERNO, M.USERID, M.USERPW, M.USERNM, M.EMAIL, M.USERTYPE, M.JOINDATE
+		FROM
+			LECTURE L
+		JOIN
+			MEMBER M
+		ON
+			L.LECTURE_WRITER_KEY = M.USERNO
+	</select>
+
+	<select id="selectLectureDetail" resultMap="lecResult">
+		SELECT
+			L.LECTURE_KEY, L.LECTURE_WRITER_KEY, L.LECTURE_PRICE, L.LECTURE_RATING,
+			L.LECTURE_CATEGORY, L.LECTURE_TITLE, L.LECTURE_SUB_TITLE,
+			L.LECTURE_CONTENT, L.LECTURE_IMAGE_URL, L.LECTURE_REG_DT,
+			M.USERNO, M.USERID, M.USERPW, M.USERNM, M.EMAIL, M.USERTYPE, M.JOINDATE
+		FROM
+			LECTURE L
+		JOIN
+			MEMBER M
+		ON
+			L.LECTURE_WRITER_KEY = M.USERNO and L.LECTURE_KEY = #{lectureKey}
+	</select>
+
 </mapper>
