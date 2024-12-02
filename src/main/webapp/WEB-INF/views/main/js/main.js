@@ -15,4 +15,18 @@ $(document).ready(function() {
     $('#btnUpload').on('click', function() {
         $('#inputFile').click();
     });
+
+    document.getElementById('scrollLeft').addEventListener('click', function() {
+        document.getElementById('cardContainer').scrollBy({
+            left: -300, // Adjust the value as needed
+            behavior: 'smooth'
+        });
+    });
+
+    document.getElementById('scrollRight').addEventListener('click', function() {
+        document.getElementById('cardContainer').scrollBy({
+            left: 300, // Adjust the value as needed
+            behavior: 'smooth'
+        });
+    });
 });

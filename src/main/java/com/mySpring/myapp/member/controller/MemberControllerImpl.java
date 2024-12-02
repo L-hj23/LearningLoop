@@ -1,11 +1,13 @@
 package com.mySpring.myapp.member.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.mySpring.myapp.member.vo.LectureVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Controller;
@@ -21,20 +23,113 @@ import com.mySpring.myapp.member.vo.MemberVO;
 
 @Controller("memberController")
 //@EnableAspectJAutoProxy
-public class MemberControllerImpl   implements MemberController {
+public class MemberControllerImpl implements MemberController {
 	@Autowired
 	private MemberService memberService;
 	@Autowired
 	MemberVO memberVO;
 	
 	@RequestMapping(value = { "/","/main.do"}, method = RequestMethod.GET)
-	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) {
-		String viewName = (String)request.getAttribute("viewName");	
-		System.out.println(viewName);
+	private ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("main view: " + viewName);
+
 		ModelAndView mav = new ModelAndView();
+		viewName="main/html/main";
 		mav.setViewName(viewName);
+		List lectureList = memberService.listLectures();
+		System.out.println("lectureList.size(): " + lectureList.size());
+		mav.addObject("lectureList", lectureList);
+
 		return mav;
 	}
+
+	@RequestMapping(value = "/listLectures.do", method = RequestMethod.GET)
+	public ModelAndView listLectures(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("listLectures view: " + viewName);
+
+		ModelAndView mav=new ModelAndView();
+		viewName = "lecture/html/list";
+		mav.setViewName(viewName);
+		List lectureList = memberService.listLectures();
+		mav.addObject("lectureList", lectureList);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/lectureDetail.do", method = RequestMethod.GET)
+	public ModelAndView lectureDetail(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("lectureDetail view: " + viewName);
+
+		ModelAndView mav=new ModelAndView();
+		viewName = "lecture/html/detail";
+		mav.setViewName(viewName);
+
+		LectureVO lectureVO = new LectureVO();
+		String lectureKey=request.getParameter("lectureKey");
+		int lectureKeyInt = Integer.parseInt(lectureKey);
+		String lectureWriterKey=request.getParameter("lectureWriterKey");
+		int lectureWriterKeyInt = Integer.parseInt(lectureWriterKey);
+		lectureVO.setLectureKey(lectureKeyInt);
+		lectureVO.setLectureWriterKey(lectureWriterKeyInt);
+		LectureVO lectureDetail = memberService.lectureDetail(lectureVO);
+		mav.addObject("lectureDetail", lectureDetail);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/lecturePurchase.do", method = RequestMethod.GET)
+	public ModelAndView lecturePurchase(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("lecturePurchase view: " + viewName);
+
+		ModelAndView mav=new ModelAndView();
+		viewName = "lecture/html/purchase";
+		mav.setViewName(viewName);
+
+		LectureVO lectureVO = new LectureVO();
+		String lectureKey=request.getParameter("lectureKey");
+		int lectureKeyInt = Integer.parseInt(lectureKey);
+		lectureVO.setLectureKey(lectureKeyInt);
+
+
+		LectureVO lectureDetail = memberService.lectureDetail(lectureVO);
+		mav.addObject("lecture", lectureDetail);
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/purchaseComplete.do", method = RequestMethod.GET)
+	public ModelAndView purchaseComplete(HttpServletRequest request, HttpServletResponse response) throws Exception{
+		request.setCharacterEncoding("utf-8");
+		String viewName = (String)request.getAttribute("viewName");
+		System.out.println("purchaseComplete view: " + viewName);
+
+		ModelAndView mav=new ModelAndView();
+		viewName = "/";
+		mav.setViewName(viewName);
+
+		LectureVO lectureVO = new LectureVO();
+		String lectureKey=request.getParameter("lectureKey");
+		int lectureKeyInt = Integer.parseInt(lectureKey);
+		lectureVO.setLectureKey(lectureKeyInt);
+
+//		HttpSession session=request.getSession();
+//		MemberVO member = (MemberVO)session.getAttribute("member");
+//		lectureVO.setLectureStudentKey(member.getUserId());
+
+//		LectureVO addLecture = memberService.addLecture(lectureVO);
+
+		return mav;
+	}
+
+
 	
 	@Override 
 	@RequestMapping(value="/member/listMembers.do" ,method = RequestMethod.GET)
@@ -60,8 +155,7 @@ public class MemberControllerImpl   implements MemberController {
 	
 	@Override
 	@RequestMapping(value="/member/removeMember.do" ,method = RequestMethod.GET)
-	public ModelAndView removeMember(@RequestParam("id") String id, 
-			           HttpServletRequest request, HttpServletResponse response) throws Exception{
+	public ModelAndView removeMember(@RequestParam("id") String id, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		request.setCharacterEncoding("utf-8");
 //		String user_id = request.getParameter("id");
 		memberService.removeMember(id);

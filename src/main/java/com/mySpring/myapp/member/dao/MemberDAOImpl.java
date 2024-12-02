@@ -1,7 +1,9 @@
 package com.mySpring.myapp.member.dao;
 
+import java.util.Collections;
 import java.util.List;
 
+import com.mySpring.myapp.member.vo.LectureVO;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -38,6 +40,18 @@ public class MemberDAOImpl implements MemberDAO {
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException{
 		  MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
 		return vo;
+	}
+
+	@Override
+	public List selectAllLectureList() throws DataAccessException {
+		List<MemberVO> lecturesList = null;
+		lecturesList = sqlSession.selectList("mapper.member.selectAllLectureList");
+		return lecturesList;
+	}
+
+	@Override
+	public LectureVO selectLectureDetail(LectureVO lectureVO) {
+		return sqlSession.selectOne("mapper.member.selectLectureDetail", lectureVO);
 	}
 
 }

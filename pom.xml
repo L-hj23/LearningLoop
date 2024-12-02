@@ -13,6 +13,7 @@
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
+
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -32,14 +33,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>	
-		
+		</dependency>
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -89,7 +90,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-				
+
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -108,7 +109,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-	
+
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -116,7 +117,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- 마이바티스 -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -148,13 +149,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.29</version>
 		</dependency>
-		<dependency> 
-			<groupId>jdbc.oracle</groupId>
-			<artifactId>OracleDriver</artifactId>
-			<version>12.1.0.2.0</version>
-			<scope>system</scope>
-			<systemPath>/Users/plumlee/Desktop/webworkspace26/springEx/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>
-		</dependency>
+<!--		<dependency> -->
+<!--			<groupId>jdbc.oracle</groupId>-->
+<!--			<artifactId>OracleDriver</artifactId>-->
+<!--			<version>12.1.0.2.0</version>-->
+<!--			<scope>system</scope>-->
+<!--			<systemPath>/Users/plumlee/Desktop/webworkspace26/springEx/src/main/webapp/WEB-INF/lib/ojdbc8.jar</systemPath>-->
+<!--		</dependency>-->
 
 		<!-- 타일즈 관련 라이브러리 -->
 		<dependency>
@@ -178,29 +179,29 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.2.1</version>
 		  </dependency>
-		
+
 		  <dependency>
 		    <groupId>commons-io</groupId>
 		    <artifactId>commons-io</artifactId>
 		    <version>1.4</version>
-		  </dependency>            
+		  </dependency>
 	</dependencies>
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.9</version>
-                <configuration>
-                    <additionalProjectnatures>
-                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-                    </additionalProjectnatures>
-                    <additionalBuildcommands>
-                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-                    </additionalBuildcommands>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>true</downloadJavadocs>
-                </configuration>
-            </plugin>
+<!--            <plugin>-->
+<!--                <artifactId>maven-eclipse-plugin</artifactId>-->
+<!--                <version>2.9</version>-->
+<!--                <configuration>-->
+<!--                    <additionalProjectnatures>-->
+<!--                        <projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>-->
+<!--                    </additionalProjectnatures>-->
+<!--                    <additionalBuildcommands>-->
+<!--                        <buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>-->
+<!--                    </additionalBuildcommands>-->
+<!--                    <downloadSources>true</downloadSources>-->
+<!--                    <downloadJavadocs>true</downloadJavadocs>-->
+<!--                </configuration>-->
+<!--            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

@@ -4,3 +4,14 @@
 pom.xml
 pom.xml
 pom.xml
+/target
+/target/classes
+/target/classes
+src/main/java/com/mySpring/myapp/HomeController.java
+src/main/java/com/mySpring/myapp/HomeController.java
+target/classes/log4j.xml
+/target/classes
+/target
+target/classes/mybatis/model/modelConfig.xml
+target/classes/mybatis/mappers/member.xml
+target/classes/log4j.xml
