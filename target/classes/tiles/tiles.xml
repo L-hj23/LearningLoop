@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+
+    <!-- 기본 레이아웃 정의 -->
+    <definition name="baseLayout" template="/WEB-INF/jsp/layout.jsp">
+        <put-attribute name="header" value="/WEB-INF/jsp/lecture/lectureHeader.jsp" />
+        <put-attribute name="content" value="" />
+    </definition>
+
+    <!-- 강의 세부 내용 페이지 정의 (기본 레이아웃 확장) -->
+    <definition name="lectureDetail" extends="baseLayout">
+        <put-attribute name="content" value="/WEB-INF/jsp/lecture/lectureDetail.jsp" />
+    </definition>
+
+</tiles-definitions>

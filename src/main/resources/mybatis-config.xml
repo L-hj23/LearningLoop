@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- 글로벌 설정 -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 언더스코어를 카멜 케이스로 매핑 활성화 -->
+        <setting name="lazyLoadingEnabled" value="true"/> <!-- 지연 로딩 활성화 -->
+        <setting name="cacheEnabled" value="true"/> <!-- 캐시 활성화 -->
+    </settings>
+
+    <!-- 타입 별칭 -->
+    <typeAliases>
+        <package name="com.mySpring.myapp.vo"/> <!-- com.mySpring.myapp.vo 패키지 내 모든 클래스에 대해 타입 별칭 설정 -->
+    </typeAliases>
+
+    <!-- 매퍼 -->
+    <mappers>
+        <mapper resource="mybatis/mappers/ReviewMapper.xml"/> <!-- 경로 확인 후 수정 필요 -->
+    </mappers>
+</configuration>
