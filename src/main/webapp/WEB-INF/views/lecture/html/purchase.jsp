@@ -23,7 +23,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('btnBuy').addEventListener('click', () => {
                 alert('구매가 완료되었습니다.');
-                const targetUrl = `/purchaseComplete?lectureKey=${lecture.lectureKey}`;
+                const targetUrl = `/purchaseComplete.do?lectureKey=${lecture.lectureKey}`;
                 window.location.href = targetUrl;
             });
         });

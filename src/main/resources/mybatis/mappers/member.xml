@@ -3,7 +3,7 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.member">
+<mapper namespace="mappers.member">
 	<resultMap id="memResult" type="memberVO">
 		<result property="userId" column="userId" />
 		<result property="userPw" column="userPw" />
@@ -13,7 +13,7 @@
 		<result property="joinDate" column="joinDate" />
 	</resultMap>
 
-	<resultMap id="lecResult" type="lectureVO">
+	<resultMap id="lecResult" type="lectureVO2">
 		<result property="lectureKey" column="LECTURE_KEY" />
 		<result property="lectureWriterKey" column="LECTURE_WRITER_KEY" />
 		<result property="lectureWriterName" column="USERNM" />
@@ -91,10 +91,10 @@
 		JOIN
 			MEMBER M
 		ON
-			L.LECTURE_WRITER_KEY = M.USERNO
+			L.LECTURE_WRITER_KEY =	 M.USERNO
 	</select>
 
-	<select id="selectLectureDetail" resultMap="lecResult">
+	<select id="selectLectureDetail" parameterType="lectureVO2" resultMap="lecResult">
 		SELECT
 			L.LECTURE_KEY, L.LECTURE_WRITER_KEY, L.LECTURE_PRICE, L.LECTURE_RATING,
 			L.LECTURE_CATEGORY, L.LECTURE_TITLE, L.LECTURE_SUB_TITLE,

@@ -20,38 +20,38 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List selectAllMemberList() throws DataAccessException {
 		List<MemberVO> membersList = null;
-		membersList = sqlSession.selectList("mapper.member.selectAllMemberList");
+		membersList = sqlSession.selectList("mappers.member.selectAllMemberList");
 		return membersList;
 	}
 
 	@Override
 	public int insertMember(MemberVO memberVO) throws DataAccessException {
-		int result = sqlSession.insert("mapper.member.insertMember", memberVO);
+		int result = sqlSession.insert("mappers.member.insertMember", memberVO);
 		return result;
 	}
 
 	@Override
 	public int deleteMember(String id) throws DataAccessException {
-		int result = sqlSession.delete("mapper.member.deleteMember", id);
+		int result = sqlSession.delete("mappers.member.deleteMember", id);
 		return result;
 	}
 	
 	@Override
 	public MemberVO loginById(MemberVO memberVO) throws DataAccessException{
-		  MemberVO vo = sqlSession.selectOne("mapper.member.loginById",memberVO);
+		  MemberVO vo = sqlSession.selectOne("mappers.member.loginById",memberVO);
 		return vo;
 	}
 
 	@Override
 	public List selectAllLectureList() throws DataAccessException {
 		List<MemberVO> lecturesList = null;
-		lecturesList = sqlSession.selectList("mapper.member.selectAllLectureList");
+		lecturesList = sqlSession.selectList("mappers.member.selectAllLectureList");
 		return lecturesList;
 	}
 
 	@Override
 	public LectureVO selectLectureDetail(LectureVO lectureVO) {
-		return sqlSession.selectOne("mapper.member.selectLectureDetail", lectureVO);
+		return sqlSession.selectOne("mappers.member.selectLectureDetail", lectureVO);
 	}
 
 }

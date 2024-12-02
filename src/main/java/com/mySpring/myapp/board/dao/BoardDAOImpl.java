@@ -20,7 +20,7 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List selectAllArticlesList() throws DataAccessException {
-		List<ArticleVO> articlesList = articlesList = sqlSession.selectList("mapper.board.selectAllArticlesList");
+		List<ArticleVO> articlesList = articlesList = sqlSession.selectList("mappers.board.selectAllArticlesList");
 		return articlesList;
 	}
 
@@ -29,7 +29,7 @@ public class BoardDAOImpl implements BoardDAO {
 	public int insertNewArticle(Map articleMap) throws DataAccessException {
 		int articleNO = selectNewArticleNO();
 		articleMap.put("articleNO", articleNO);
-		sqlSession.insert("mapper.board.insertNewArticle",articleMap);
+		sqlSession.insert("mappers.board.insertNewArticle",articleMap);
 		return articleNO;
 	}
     
@@ -51,33 +51,33 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	@Override
 	public ArticleVO selectArticle(int articleNO) throws DataAccessException {
-		return sqlSession.selectOne("mapper.board.selectArticle", articleNO);
+		return sqlSession.selectOne("mappers.board.selectArticle", articleNO);
 	}
 
 	@Override
 	public void updateArticle(Map articleMap) throws DataAccessException {
-		sqlSession.update("mapper.board.updateArticle", articleMap);
+		sqlSession.update("mappers.board.updateArticle", articleMap);
 	}
 
 	@Override
 	public void deleteArticle(int articleNO) throws DataAccessException {
-		sqlSession.delete("mapper.board.deleteArticle", articleNO);
+		sqlSession.delete("mappers.board.deleteArticle", articleNO);
 		
 	}
 	
 	@Override
 	public List selectImageFileList(int articleNO) throws DataAccessException {
 		List<ImageVO> imageFileList = null;
-		imageFileList = sqlSession.selectList("mapper.board.selectImageFileList",articleNO);
+		imageFileList = sqlSession.selectList("mappers.board.selectImageFileList",articleNO);
 		return imageFileList;
 	}
 	
 	private int selectNewArticleNO() throws DataAccessException {
-		return sqlSession.selectOne("mapper.board.selectNewArticleNO");
+		return sqlSession.selectOne("mappers.board.selectNewArticleNO");
 	}
 	
 	private int selectNewImageFileNO() throws DataAccessException {
-		return sqlSession.selectOne("mapper.board.selectNewImageFileNO");
+		return sqlSession.selectOne("mappers.board.selectNewImageFileNO");
 	}
 
 }

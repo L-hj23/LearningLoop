@@ -6,20 +6,20 @@
     <select id="getAllLectures" resultType="com.mySpring.myapp.vo.LectureVO">
         SELECT id, title, description, instructor, created_date
         FROM lectures
-        ORDER BY created_date DESC;
+        ORDER BY created_date DESC
     </select>
 
     <!-- 특정 강의 조회 -->
     <select id="getLectureById" parameterType="int" resultType="com.mySpring.myapp.vo.LectureVO">
         SELECT id, title, description, instructor, created_date
         FROM lectures
-        WHERE id = #{id};
+        WHERE id = #{id}
     </select>
 
     <!-- 강의 추가 -->
     <insert id="addLecture" parameterType="com.mySpring.myapp.vo.LectureVO">
         INSERT INTO lectures (title, description, instructor, created_date)
-        VALUES (#{title}, #{description}, #{instructor}, NOW());
+        VALUES (#{title}, #{description}, #{instructor}, SYSDATE)
     </insert>
 
     <!-- 강의 수정 -->
@@ -28,13 +28,13 @@
         SET title = #{title}, 
             description = #{description}, 
             instructor = #{instructor}
-        WHERE id = #{id};
+        WHERE id = #{id}
     </update>
 
     <!-- 강의 삭제 -->
     <delete id="deleteLecture" parameterType="int">
         DELETE FROM lectures
-        WHERE id = #{id};
+        WHERE id = #{id}
     </delete>
 
 </mapper>

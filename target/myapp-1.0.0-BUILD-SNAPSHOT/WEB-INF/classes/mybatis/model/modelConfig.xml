@@ -1,10 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration
+		PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	<!-- 글로벌 설정 -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 언더스코어를 카멜 케이스로 매핑 활성화 -->
+		<setting name="lazyLoadingEnabled" value="true"/> <!-- 지연 로딩 활성화 -->
+		<setting name="cacheEnabled" value="true"/> <!-- 캐시 활성화 -->
+	</settings>
+
 	<typeAliases>
-	<typeAlias alias="ReviewVO" type="com.mySpring.myapp.vo.ReviewVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.MemberVO"  alias="memberVO" />
+		<typeAlias type="com.mySpring.myapp.member.vo.LectureVO"  alias="lectureVO2" />
+		<typeAlias type="com.mySpring.myapp.board.vo.ArticleVO"  alias="articleVO" />
+		<typeAlias type="com.mySpring.myapp.board.vo.ImageVO"  alias="imageVO" />
+
+		<typeAlias alias="ReviewVO" type="com.mySpring.myapp.vo.ReviewVO" />
 		<typeAlias alias="LectureVO" type="com.mySpring.myapp.vo.LectureVO" />
+
+		<package name="com.mySpring.myapp.vo"/> <!-- com.mySpring.myapp.vo 패키지 내 모든 클래스에 대해 타입 별칭 설정 -->
 	</typeAliases>
+
+	<!-- 매퍼 -->
+	<!--	<mappers>-->
+	<!--		<mapper resource="mybatis/mappers/ReviewMapper.xml"/> &lt;!&ndash; 경로 확인 후 수정 필요 &ndash;&gt;-->
+	<!--	</mappers>-->
 </configuration>

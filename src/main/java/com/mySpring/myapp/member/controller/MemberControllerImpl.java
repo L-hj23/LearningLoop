@@ -112,7 +112,7 @@ public class MemberControllerImpl implements MemberController {
 		System.out.println("purchaseComplete view: " + viewName);
 
 		ModelAndView mav=new ModelAndView();
-		viewName = "/";
+		viewName = "main/html/main";
 		mav.setViewName(viewName);
 
 		LectureVO lectureVO = new LectureVO();
